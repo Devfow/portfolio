@@ -1,0 +1,109 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    overflow: hidden;
+}
+
+body {
+    background-color: #000;
+    color: #0f0;
+    font-family: 'Courier New', Courier, monospace;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-size: cover;
+    background-position: center;
+    transition: background-image 1s ease-in-out;
+}
+
+#game-container {
+    border: 2px solid #0f0;
+    padding: 20px;
+    width: 100%;
+    height: 90%;
+    display: flex;
+    flex-direction: column;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+.story-text {
+    flex-grow: 1;
+    overflow-y: auto;
+    white-space: pre-wrap;
+    margin-bottom: 20px;
+}
+
+.choices-container button {
+    background-color: #000;
+    color: #0f0;
+    border: 1px solid #0f0;
+    padding: 10px;
+    margin: 5px;
+    cursor: pointer;
+    width: 100%;
+    text-align: left;
+}
+
+.choices-container button:hover {
+    background-color: #0f0;
+    color: #000;
+}
+
+#status-panel {
+    border-top: 2px solid #0f0;
+    padding-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#restart-button {
+    background-color: #000;
+    color: #0f0;
+    border: 1px solid #0f0;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+#restart-button:hover {
+    background-color: #0f0;
+    color: #000;
+}
+
+.theme-flesh {
+    background-image: url('https://picsum.photos/seed/flesh/1200/800');
+    color: #f2d7d5;
+    text-shadow: 1px 1px 2px black, 0 0 1em #8b0000, 0 0 0.2em #8b0000;
+}
+
+.theme-flesh #game-container, .theme-flesh .choices-container button {
+    border-color: #f2d7d5;
+}
+
+.theme-flesh .choices-container button {
+    color: #f2d7d5;
+}
+
+.theme-flesh .choices-container button:hover {
+    background-color: #f2d7d5;
+    color: #8b0000;
+}
+
+.theme-purple-sky {
+    background-image: url('https://picsum.photos/seed/sky/1200/800');
+    color: #e8dff5;
+    text-shadow: 1px 1px 2px black, 0 0 1em #4a235a, 0 0 0.2em #4a235a;
+}
+
+.theme-purple-sky #game-container, .theme-purple-sky .choices-container button {
+    border-color: #e8dff5;
+}
+
+.theme-purple-sky .choices-container button {
+    color: #e8dff5;
+}
+
+.theme-purple-sky .choices-container button:hover {
+    background-color: #e8dff5;
+    color: #4a235a;
+}

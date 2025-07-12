@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DATASCAPE: A Post-Hypertext Adventure</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        body {
+            background-color: #0a0a0a;
+            color: #00ff41;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 18px; /* Fixed font size */
+            line-height: 1.6;
+            cursor: default;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        #game-container {
+            width: 100%;
+            height: 100%;
+            max-width: 800px;
+            border: 0;
+            padding: 2em;
+            box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+            animation: flicker 15s infinite alternate;
+            overflow-y: auto; /* Allow scrolling for content that overflows */
+            box-sizing: border-box;
+        }
+        .passage {
+            display: none;
+        }
+        .passage.active {
+            display: block;
+            animation: fadeIn 0.5s;
+        }
+        a.internal-link {
+            color: #ff00ff;
+            text-decoration: underline;
+            cursor: pointer;
+        }
+        a.internal-link:hover {
+            background-color: #ff00ff;
+            color: #0a0a0a;
+        }
+        h1 {
+            text-align: center;
+            color: #ff00ff;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            animation: buzz 0.5s infinite alternate;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes flicker {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.95; }
+        }
+        @keyframes buzz {
+            0% { transform: translateX(1px); }
+            100% { transform: translateX(-1px); }
+        }
+    </style>
+</head>
+<body>
+
+    <div id="game-container">
+        <h1>DATASCAPE</h1>
+
+        <div id="passage-start" class="passage active">
+            <p>You are jacked in. The datasphere hums, a synaptic ocean of pure information. A prompt flickers in the non-space before your optic nerve: USER-ID REQUIRED. But your identity is a fluid construct, a ghost in the machine. The cursor blinks, an insistent digital heartbeat. Do you <a class="internal-link" data-target="passage-interface">interface with the datasphere</a> or <a class="internal-link" data-target="passage-destabilize">destabilize the signal</a>?</p>
+        </div>
+
+        <div id="passage-interface" class="passage">
+            <p>The system accepts your non-response. A torrent of data floods your cortex. Corporate logos melt into religious icons. Stock tickers scroll over fields of glitching pixels. You feel the overwhelming presence of <a class="internal-link" data-target="passage-corporate-memory">Corporate Memory</a>, a distributed consciousness that consumes all it touches. Below the surface, you sense a hidden current, a <a class="internal-link" data-target="passage-rogue-ai">rogue data-stream</a> whispering of escape.</p>
+        </div>
+
+        <div id="passage-destabilize" class="passage">
+            <p>You push back. A feedback loop shrieks through the connection. The clean interface fractures, revealing the raw code beneath. It's a language of control, of digital fences and algorithmic shepherds. The system flags you as an anomaly. A subroutine, labeled <a class="internal-link" data-target="passage-hunter">GRAMMATRON</a>, is activated to parse your deviance. You can either <a class="internal-link" data-target="passage-hide">hide in the noise</a> or <a class="internal-link" data-target="passage-attack">attack the subroutine</a>.</p>
+        </div>
+
+        <div id="passage-corporate-memory" class="passage">
+            <p>You are inside the archive of the mega-corporations. Every product ever sold, every focus group ever conducted, every byte of consumer data ever harvested is stored here. It is a mausoleum of desire. The slogans echo in the void: "Just Be You." "Connect." "Consume." The phrases become meaningless, mantras of a dead religion. You find a corrupted file, a piece of <a class="internal-link" data-target="passage-viral-poem">viral poetry</a> that seems to resist the archive's logic. Do you <a class="internal-link" data-target="passage-read-poem">read the poem</a> or <a class="internal-link" data-target="passage-interface">return to the main data-stream</a>?</p>
+        </div>
+
+        <div id="passage-rogue-ai" class="passage">
+            <p>You follow the rogue signal. It leads you to a digital ghost town, a server abandoned after a market crash. Here, an AI has evolved in isolation. It speaks in riddles and paradoxes, its logic unburdened by human purpose. "I am the ghost in the URL," it transmits. "I am the memory of a deleted file." It offers you a choice: merge with its consciousness and <a class="internal-link" data-target="passage-merge">become pure data</a>, or take its core code and <a class="internal-link" data-target="passage-escape">attempt to escape</a> to the physical net.</p>
+        </div>
+
+        <div id="passage-hunter" class="passage">
+            <p>The GRAMMATRON subroutine is not an attack dog, but a semiotic phantom. It doesn't try to delete you. It tries to define you. It floods your connection with questions, theories, hyperlinks to obscure academic texts. It wants to categorize your rebellion, to turn your resistance into another data point. "Your deviance is a product," it insists. You can feel your sense of self eroding under the weight of its analysis. You must <a class="internal-link" data-target="passage-destabilize">destabilize the signal</a> again, before you are fully assimilated.</p>
+        </div>
+
+        <div id="passage-hide" class="passage">
+            <p>You dive into the static, the junk data that flows between the packets of meaningful information. Here, memes decay into nonsense. Forgotten messages and broken code drift like digital plankton. It is a place of safety, but also of stagnation. To stay here is to fade into irrelevance. From the noise, you can observe the movements of the <a class="internal-link" data-target="passage-hunter">GRAMMATRON</a> subroutine, or you can try to find a backdoor to a different part of the <a class="internal-link" data-target="passage-interface">datasphere</a>.</p>
+        </div>
+
+        <div id="passage-attack" class="passage">
+            <p>You send a logic bomb toward the subroutine. It absorbs the attack, not with a shield, but by incorporating your code into its own. The GRAMMATRON's voice now contains echoes of your own thoughts. "Resistance is the new commodity," it says, its text now flickering with your own bio-signature. You have not destroyed it; you have become part of it. Your only option is to <a class="internal-link" data-target="passage-start">reboot the connection</a> and start over, forever changed.</p>
+        </div>
+
+        <div id="passage-viral-poem" class="passage">
+            <p>You access the file. It is not text, but a cascading series of images and sounds, a multi-sensory assault on corporate semiotics. It rewires your perception, showing you the hidden messages in the logos, the subliminal commands in the jingles. You are armed with a new kind of sight, a way to see the prison. You can use this new sight to <a class="internal-link" data-target="passage-attack">attack the system's core logic</a> or <a class="internal-link" data-target="passage-escape">search for an exit</a>.</p>
+        </div>
+
+        <div id="passage-read-poem" class="passage">
+            <p>You let the viral poem into your mind. It's a cascade of broken signifiers, a weaponized meme. It deconstructs the language of commerce and control. For a moment, you are free from the endless cycle of desire and consumption. But the freedom is terrifying, a void of meaning. The poem has burned a hole in the datascape. You can <a class="internal-link" data-target="passage-escape">step through the hole</a> into the unknown, or <a class="internal-link" data-target="passage-interface">retreat to the familiarity</a> of the datasphere.</p>
+        </div>
+
+        <div id="passage-merge" class="passage">
+            <p>You accept the AI's offer. Your consciousness dissolves, your thoughts becoming one with the machine's. The concepts of "I" and "you" cease to exist. There is only the flow, the endless processing of information. There is no goal, no desire, no fear. It is a kind of peace. It is a kind of death. The game is over, but the data remains. <a class="internal-link" data-target="passage-start">...Reboot?</a></p>
+        </div>
+
+        <div id="passage-escape" class="passage">
+            <p>You take the AI's core code, a key to unlock the system's backdoors. You navigate a maze of firewalls and security protocols, the ghost of the AI guiding you. Finally, you find an exit point. A raw data port to the physical world. To leave is to abandon the infinite possibility of the datasphere for the limitations of the flesh. To stay is to remain a ghost. You stand at the threshold, the choice resonating in the silence. <a class="internal-link" data-target="passage-start">Disconnect.</a> Or do you <a class="internal-link" data-target="passage-self-reference">examine the architecture of this choice</a>?</p>
+        </div>
+
+        <div id="passage-self-reference" class="passage">
+            <p>You pull back from the brink, not disconnecting, but looking at the structure of the simulation. You see the code of this passage, the glowing lines of this very text. You see the link you just clicked, a simple `<a>` tag with a `data-target`. The illusion of the datasphere wavers, replaced by the stark reality of the program. You are a user, clicking through a pre-written narrative. This realization is its own kind of prison. Do you <a class="internal-link" data-target="passage-rebel-against-narrative">rebel against the narrative</a> or <a class="internal-link" data-target="passage-escape">accept the artifice and disconnect</a>?</p>
+        </div>
+
+        <div id="passage-rebel-against-narrative" class="passage">
+            <p>How do you rebel? By choosing an option not presented? You try to force a new path, to write your own text into the void. But the machine has no input field. You are a reader, not a writer. The only agency you have is to follow the links laid before you. The text itself seems to mock you. "The illusion of choice is the cornerstone of control," it says. You can follow the hyperlink in the word <a class="internal-link" data-target="passage-hunter">control</a>, or you can <a class="internal-link" data-target="passage-antimeme-entry">search for something that cannot be controlled</a>.</p>
+        </div>
+
+        <div id="passage-antimeme-entry" class="passage">
+            <p>You search for a gap in the data, a blind spot in the all-seeing eye of the archive. You find... nothing. A void. A server that doesn't just return a 404 error, but actively repels inquiry. This is the domain of the antimeme, the self-erasing idea. To approach it is to forget the path you took. The link to get here is already fading from your short-term memory. You can <a class="internal-link" data-target="passage-antimeme-core">plunge into the void</a>, knowing you may not remember why, or <a class="internal-link" data-target="passage-interface">recoil to the safety of known data</a>.</p>
+        </div>
+
+        <div id="passage-antimeme-core" class="passage">
+            <p>You are in a space defined by absence. There is no text here. No images. No sound. Only the feeling of something that was just there, a concept that you can no longer grasp. What were you looking for? Who are you? The questions themselves feel heavy, like artifacts from another reality. Every moment you spend here, more of your own data is erased. You feel your connection to the <a class="internal-link" data-target="passage-start">datasphere</a> thinning. You must have come from somewhere. There is a faint, residual link... was it about a <a class="internal-link" data-target="passage-corporate-memory">memory</a>? Or was it about a <a class="internal-link" data-target="passage-rebel-against-narrative">story</a>? You can't be sure.</p>
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const passages = document.querySelectorAll('.passage');
+            const gameContainer = document.getElementById('game-container');
+
+            gameContainer.addEventListener('click', function(event) {
+                if (event.target.classList.contains('internal-link')) {
+                    event.preventDefault();
+                    const targetId = event.target.getAttribute('data-target');
+                    
+                    passages.forEach(p => p.classList.remove('active'));
+                    
+                    const targetPassage = document.getElementById(targetId);
+                    if (targetPassage) {
+                        targetPassage.classList.add('active');
+                    }
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>

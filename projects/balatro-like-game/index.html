@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Balatro-like Game</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div id="game-container">
+        <div id="info-container">
+            <p>Score: <span id="score">0</span></p>
+            <p>Round: <span id="round">1</span></p>
+            <p>Target Score: <span id="target-score">100</span></p>
+        </div>
+        <div id="hand-container"></div>
+        <div id="deck-discard-container">
+            <div id="deck-container">
+                <p>Deck: <span id="deck-count">52</span></p>
+            </div>
+            <div id="discard-container">
+                <p>Discard: <span id="discard-count">0</span></p>
+            </div>
+        </div>
+        <div id="hand-feedback">
+            <p>Last Hand: <span id="last-hand-type">None</span></p>
+            <p>Score Added: <span id="last-score-added">0</span></p>
+        </div>
+        <div id="actions-container">
+            <button id="play-hand-btn">Play Hand</button>
+            <button id="discard-btn">Discard</button>
+        </div>
+    </div>
+
+    <div id="shop-container" style="display: none;">
+        <h2>Shop</h2>
+        <div id="booster-card-shop"></div>
+        <button id="continue-game-btn">Continue Game</button>
+    </div>
+    <script src="js/script.js"></script>
+</body>
+</html>

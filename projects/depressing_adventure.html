@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Another Day</title>
+    <style>
+        html, body {
+            height: 100%;
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+        body {
+            background-color: #1a1a1a;
+            color: #dcdcdc;
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        #game {
+            max-width: 600px;
+            width: 100%;
+            height: 100%;
+            border: 0;
+            padding: 20px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.5);
+            overflow-y: auto;
+            box-sizing: border-box;
+            display: flex;
+            flex-direction: column;
+        }
+        #passage {
+            color: #789922;
+            margin-bottom: 20px;
+            white-space: pre-wrap; /* This is key for the greentext format */
+            font-size: 1.1em; /* Responsive font size */
+            line-height: 1.6;
+            flex-grow: 1;
+            overflow-y: auto;
+        }
+        #choices a {
+            color: #4f9fcf;
+            text-decoration: none;
+            display: block;
+            margin-top: 10px;
+            padding: 10px;
+            border: 1px solid #333;
+            transition: background-color 0.3s, color 0.3s;
+            font-size: 1em; /* Responsive font size */
+        }
+        #choices a:hover {
+            background-color: #4f9fcf;
+            color: #1a1a1a;
+        }
+    </style>
+</head>
+<body>
+    <div id="game">
+        <div id="passage"></div>
+        <div id="choices"></div>
+    </div>
+
+    <script>
+        const passages = {
+            start: {
+                text: `>be me
+>wake up
+>it's 1:37 PM
+>sunlight hurts eyes
+>the ceiling is the most interesting thing in the world
+>a familiar weight settles on chest
+>what to do`,
+                choices: [
+                    { text: "Get out of bed.", link: "get_up" },
+                    { text: "Look at phone.", link: "phone" },
+                    { text: "Go back to sleep.", link: "sleep_again" }
+                ]
+            },
+            get_up: {
+                text: `>manage to sit up
+>feet touch the cold floor
+>the air is stale
+>room is a mess
+>clothes everywhere
+>a monument to apathy
+>the effort is immense
+>already tired`,
+                choices: [
+                    { text: "Go to the kitchen.", link: "kitchen" },
+                    { text: "Just stand here for a minute.", link: "stand" },
+                    { text: "This was a mistake. Go back to bed.", link: "back_to_bed" }
+                ]
+            },
+            phone: {
+                text: `>grab phone
+>screen is blindingly bright
+>unlock it
+>muscle memory opens social media
+>scroll
+>everyone is happy
+>everyone is successful
+>everyone is lying
+>or maybe they aren't
+>feel worse`,
+                choices: [
+                    { text: "Keep scrolling.", link: "phone_doomscroll" },
+                    { text: "Throw phone across the room.", link: "throw_phone" },
+                    { text: "Put phone down.", link: "get_up" }
+                ]
+            },
+            phone_doomscroll: {
+                text: `>thumb moves on its own
+>an hour passes
+>or maybe two
+>time is meaningless soup
+>saw a video of a cat
+>felt nothing
+>saw a post from an old friend getting married
+>felt something, it was bad
+>battery is at 8%`,
+                choices: [
+                    { text: "This is pointless. Get up.", link: "get_up" },
+                    { text: "Plug it in and keep scrolling.", link: "start" }
+                ]
+            },
+            throw_phone: {
+                text: `>a surge of... something
+>not anger, just frustration
+>fling the phone
+>it hits a pile of clothes with a soft thud
+>anticlimactic
+>now what
+>the silence is louder now`,
+                choices: [
+                    { text: "Get up and face the day.", link: "get_up" },
+                    { text: "Lie back down in the quiet.", link: "back_to_bed" }
+                ]
+            },
+            sleep_again: {
+                text: `>pull the covers over head
+>the darkness is comforting
+>it's safe here
+>can't fail if you don't try
+>drift off into a shallow, unsatisfying sleep`,
+                choices: [
+                    { text: "...", link: "start" }
+                ]
+            },
+            back_to_bed: {
+                text: `>yep
+>back under the covers
+>the familiar indent in the mattress welcomes you home
+>it's a defeat, but a comfortable one
+>the world can wait`,
+                choices: [
+                    { text: "Try again later.", link: "start" }
+                ]
+            },
+            kitchen: {
+                text: `>make it to the kitchen
+>the sink is full of dishes
+>open the fridge
+>it's mostly condiments and a single, sad-looking carrot
+>too much effort to cook
+>too much effort to order food`,
+                choices: [
+                    { text: "Drink a glass of water.", link: "water" },
+                    { text: "Just go back to bed.", link: "back_to_bed" }
+                ]
+            },
+            water: {
+                text: `>fill a glass from the tap
+>it's wet
+>congratulations, you have achieved hydration
+>the day's one accomplishment
+>the weight is still there`,
+                choices: [
+                    { text: "Okay, what's next?", link: "get_up" },
+                    { text: "That was exhausting. Back to bed.", link: "back_to_bed" }
+                ]
+            },
+            stand: {
+                text: `>just standing in the middle of the room
+>the dust motes dance in the sliver of light from the window
+>they seem busy
+>they have purpose
+>must be nice`,
+                choices: [
+                    { text: "Okay, move.", link: "kitchen" },
+                    { text: "Forget it.", link: "back_to_bed" }
+                ]
+            }
+        };
+
+        const passageEl = document.getElementById('passage');
+        const choicesEl = document.getElementById('choices');
+
+        function renderPassage(passageName) {
+            const passage = passages[passageName];
+            passageEl.textContent = passage.text;
+
+            choicesEl.innerHTML = '';
+            passage.choices.forEach(choice => {
+                const a = document.createElement('a');
+                a.href = '#';
+                a.textContent = `> ${choice.text}`;
+                a.dataset.link = choice.link;
+                a.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    renderPassage(e.target.dataset.link);
+                });
+                choicesEl.appendChild(a);
+            });
+        }
+
+        window.onload = () => renderPassage('start');
+    </script>
+</body>
+</html>
